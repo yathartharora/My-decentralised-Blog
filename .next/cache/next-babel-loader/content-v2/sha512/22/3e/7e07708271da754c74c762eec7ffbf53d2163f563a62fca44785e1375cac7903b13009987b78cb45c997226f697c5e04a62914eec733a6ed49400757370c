@@ -1,0 +1,1 @@
+{"ast":null,"code":"import React, { Component } from 'reat';","map":{"version":3,"sources":["/Users/yathartharora/Blog/pages/newBlog.js"],"names":["React","Component"],"mappings":"AAAA,OAAOA,KAAP,IAAeC,SAAf,QAA+B,MAA/B","sourcesContent":["import React, {Component} from 'reat'"]},"metadata":{},"sourceType":"module"}
