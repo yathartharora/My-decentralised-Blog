@@ -1,13 +1,19 @@
 import React from 'react';
-import { Header, Segment } from 'semantic-ui-react';
+import { Header, Image, Icon, Segment } from 'semantic-ui-react';
+import {Link} from '../routes';
 
 const HeaderExampleTextAlignment = () => (
-  <Segment>
-    <Header as='h1' textAlign='center' inverted color="brown" floated="right" dividing >
-      BLOG
+    
+  <Header as='h1' color='black' textAlign='center' dividing>
+        <Image circular src='/myself.jpg' floated='left' />
+            CURIOUS MINDS
+        <Link route={`/newblog`}>
+        <Icon name='upload' />
+        </Link>
+        <Header.Subheader>
+            Don't Let Your Passion Die As A Quotation
+        </Header.Subheader>
     </Header>
-
-  </Segment>
 )
 
 export default HeaderExampleTextAlignment

@@ -4,6 +4,7 @@ import Layout from '../Components/Layout';
 import {Form, Button, Input, Header, Icon, Image} from 'semantic-ui-react';
 import ipfs from '../ipfs';
 import web3 from '../Ethereum/web3';
+import HeadText from '../Components/Heading';
 
 class NewBlog extends Component{
 
@@ -70,24 +71,14 @@ class NewBlog extends Component{
     render(){
         return(
             <Layout>
-                <Header as='h1' color='black' textAlign='center' dividing>
-                        <Image circular src='/myself.jpg' floated='left' />
-                        CURIOUS MINDS
-                        
-                        <Icon name='upload' corner='top right' size='tiny' />
-                        
-                        <Header.Subheader>
-                            Don't Let Your Passion Die As A Quotation
-                        </Header.Subheader>
-                    </Header>
 
-
+                <HeadText />
                 <Form onSubmit={this.onsubmit}>
                     <Form.Field>
                         <label> Name</label>
                         <Input 
-                         value = {this.state.firstname}
-                         onChange = {event => this.setState({firstname: event.target.value})}
+                         value = {this.state.name}
+                         onChange = {event => this.setState({name: event.target.value})}
                         />
 
                         <label>Upload File</label>
