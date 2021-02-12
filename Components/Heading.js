@@ -4,14 +4,14 @@ import {Link} from '../routes';
 
 const HeaderExampleTextAlignment = () => (
     
-  <Header as='h1' color='black' textAlign='center' dividing>
-        <Image circular src='/myself.jpg' floated='left' />
-            CURIOUS MINDS
-        <Link route={`/newblog`}>
-        <Icon name='upload' />
-        </Link>
+  <Header as='h1' icon textAlign='center' dividing>
+        <Icon name="pencil alternate" circular />
+            <p style={{}}>THE PASSION PAD</p>
+        {/* <Link route={`/newblog`}>
+        <Icon name='upload'/>
+        </Link> */}
         <Header.Subheader>
-            Don't Let Your Passion Die As A Quotation
+            "Don't Let Your Passion Die As A Quotation"
         </Header.Subheader>
     </Header>
 )
