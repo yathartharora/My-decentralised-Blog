@@ -9,6 +9,7 @@ import RequestBlog from '../Components/Display';
 
 const List =[]
 
+const square = { width: 150, height: 150 }
 
 
 class Blog extends Component{
@@ -41,19 +42,33 @@ class Blog extends Component{
                     <HeadText />
                     <Message positive size="big">
                         <Message.Header>WELCOME!</Message.Header>
-                        <p>I write Twitter Threads on a variety of a topics - Decentralisation, Money, Psychology. You will find notes of many books that I have read and the projects that I have made </p>
+                        <p>This Blog is a way to organise all my threads/articles that I write on different platforms - Twitter, LinkedIn, GFG, Medium and put them at one place.
+                            The Blog - 'THE PASSION PAD' is decentralised and all the files are uploaded on the Inter Planetary File System. I am 
+                            an avid reader and you will often find me summarising a Book in a long Twitter thread - Yes that's who I am, have fun experiencing Yatharthism!
+                            I have also added a list of the Books I have read and the goal is to assimilate as much knowledge as I can while I exist to suffer!
+                            The topics include - Blockchain, Decentralisation, Money and sometimes Philosophical!(Yup.. No Love Stories sadly!) DM's are always open for the suggestions.
+                        </p>
+
+                        <p style={{fontStyle:'italic'}}>Faaar from Social media yet so close to Twitter! Cheers</p>
+                        <p style={{fontStyle:'italic'}}> ~ Yatharth Arora</p>
                     </Message>
     
                     <Grid columns={2}>
                         <Grid.Column width={6} floated="left">
+                        <div style={{fontSize:30, fontWeight:'bold', fontSmooth:10, marginTop: 10}}>Threads/Articles:</div>
+                        <p>(Hover over any link and start reading) </p>
+                            <Segment color="red">
                         {this.renderRow()}
+                        </Segment>
                         </Grid.Column>
 
                         <Grid.Column width={6}>
+
+                            <Segment color="purple">
                             <Link route={'/books'}>
-                            <Button color="grey" icon labelPosition="left">
+                            <Button primary icon labelPosition="left" size="big">
                             <Icon name="book" size="large"/>
-                                My Books
+                                My Library
                             </Button>
                             </Link>
 
@@ -61,12 +76,31 @@ class Blog extends Component{
                                 <Message.Header>For Admin Only!</Message.Header>
                                 <br></br>
                                 <Link route={'/newblog'}>
-                                    <Button icon labelPosition="left">
+                                    <Button icon labelPosition="left" size="big">
                                         <Icon size="big" name="cloud upload"/>
                                         Upload
                                     </Button>
                                 </Link>
                             </Message>
+                            </Segment>
+                            <br></br>
+                            <div>
+                                <p style={{fontWeight:'bold', fontSize:30}}>CONTACT</p>
+                            <Segment circular style={square} inverted color="olive" >
+                                <Icon name="pencil" size="huge" color="blue"></Icon>
+                            </Segment>
+                            <Segment circular inverted style={square} inverted color="grey">
+                                <a href={`https://twitter.com/YatharthArora8`}><Icon name="twitter" size="huge" color="blue"></Icon></a>
+                            </Segment>
+                            </div>
+                            <div>
+                            <Segment circular inverted style={square} inverted color="grey">
+                            <a href={`https://twitter.com/YatharthArora8`}><Icon name="mail" size="huge" color="blue"></Icon></a>
+                            </Segment>
+                            <Segment circular style={square} inverted color="olive" >
+                            <Icon name="pencil" size="huge" color="blue"></Icon>
+                            </Segment>
+                            </div>
                         </Grid.Column>
                     </Grid>
                     
