@@ -6,3 +6,6 @@ an avid reader and you will often find me summarising a Book in a long Twitter t
 I have also added a list of the Books I have read and the goal is to assimilate as much knowledge as I can while I exist to suffer!
 The topics include - Blockchain, Decentralisation, Money and sometimes Philosophical!(Yup.. No Love Stories sadly!) DM's are always open for the suggestions.
 
+
+####Link
+[The-Passion-Pad](https://my-decentralised-blog.vercel.app)
