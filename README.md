@@ -10,4 +10,5 @@ The topics include - Blockchain, Decentralisation, Money and sometimes Philosoph
 #### Blog Link
 [The-Passion-Pad](https://my-decentralised-blog.vercel.app)
 
-![The-Passion-Pad](https://drive.google.com/file/d/1x_9zxuUQCl0XcpHWQD7rNqEQ5WASt0v9/view)
+![Screenshot 2021-02-15 at 4 13 41 AM](https://user-images.githubusercontent.com/43466752/107964630-7d895e00-6fcf-11eb-826e-78a4931ff6d5.png)
+
