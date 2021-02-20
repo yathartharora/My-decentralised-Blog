@@ -63,42 +63,38 @@ class Blog extends Component{
                         </Grid.Column>
 
                         <Grid.Column width={6}>
-
-                            <Segment color="purple">
-                            <Link route={'/books'}>
-                            <Button primary icon labelPosition="left" size="big">
-                            <Icon name="book" size="large"/>
-                                My Library
-                            </Button>
-                            </Link>
-
-                            <Message warning>
-                                <Message.Header>For Admin Only!</Message.Header>
-                                <br></br>
-                                <Link route={'/newblog'}>
-                                    <Button icon labelPosition="left" size="big">
-                                        <Icon size="big" name="cloud upload"/>
-                                        Upload
-                                    </Button>
-                                </Link>
-                            </Message>
-                            </Segment>
-                            <br></br>
                             <div>
-                                <p style={{fontWeight:'bold', fontSize:30}}>CONTACT</p>
                             <Segment circular style={square} inverted color="olive" >
-                                <Icon name="pencil" size="huge" color="blue"></Icon>
+                            <Link route={'/newblog'}>
+                                <a><Icon size="huge" name="cloud upload"/></a>
+                            </Link>
                             </Segment>
                             <Segment circular inverted style={square} inverted color="grey">
-                                <a href={`https://twitter.com/YatharthArora8`}><Icon name="twitter" size="huge" color="blue"></Icon></a>
+                            <Link route={'/books'}>
+                                <a><Icon name="book" size="huge"/></a>
+                            </Link>
                             </Segment>
                             </div>
                             <div>
                             <Segment circular inverted style={square} inverted color="grey">
-                            <a href={`https://twitter.com/YatharthArora8`}><Icon name="mail" size="huge" color="blue"></Icon></a>
+                            <a>Coming Soon!</a>
                             </Segment>
                             <Segment circular style={square} inverted color="olive" >
-                            <Icon name="pencil" size="huge" color="blue"></Icon>
+                            <a>Coming Soon!</a>
+                            </Segment>
+
+                            <br></br>
+
+                            <Segment color="purple">
+                            
+                            <Message warning>
+                                <Message.Header>Write to me at:</Message.Header>
+                                <br></br>
+                                <a href={`https://twitter.com/YatharthArora8`}><Icon name="twitter" size="huge" /></a>
+                                <a><Icon name="mail" size="huge" /></a>
+                                <a href={`https://github.com/yathartharora`}><Icon name="github" size="huge" /></a>
+                                <a href={`https://www.linkedin.com/in/yathartharora/`}><Icon name="linkedin" size="huge" /></a>
+                            </Message>
                             </Segment>
                             </div>
                         </Grid.Column>
