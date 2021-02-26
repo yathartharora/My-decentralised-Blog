@@ -15,6 +15,11 @@ contract Blog{
         string author;
         string summary;
     }
+
+    struct Projects{
+        string name;
+        string link;
+    }
     
     constructor() public {
         manager = msg.sender;
@@ -22,6 +27,7 @@ contract Blog{
     
     File[] public f;
     Books[] public book;
+    Projects[] public project;
     
     modifier restricted{
         require(msg.sender==manager);
@@ -36,6 +42,10 @@ contract Blog{
     function BookUpload(string bname, string auth, string sum) public restricted{
         book.push(Books(bname,auth,sum));
     }
+
+    function ProjectUpload(string pname, string link) public restricted{
+        project.push(Projects(pname,link));
+    }
     
     function display() public view returns(File[]){
         return f;
@@ -43,5 +53,9 @@ contract Blog{
     
     function Bookdisplay() public view returns(Books[]){
         return book;
+    }
+
+    function Projectdisplay() public view returns(Projects[]){
+        return project;
     }
 }

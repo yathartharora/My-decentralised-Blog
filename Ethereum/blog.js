@@ -1,7 +1,7 @@
 import web3 from './web3';
 import Mail from './build/Blog.json';
 
-const instance = new web3.eth.Contract(JSON.parse(Mail.interface),'0x34A4355e91c64144901d02C299A76201130fc6d5');
+const instance = new web3.eth.Contract(JSON.parse(Mail.interface),'0x91B5d935875F85F3450Cd1113424d7BDBd254240');
 
 
 export default instance;
