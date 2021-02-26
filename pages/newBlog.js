@@ -19,11 +19,10 @@ class NewBlog extends Component{
             bookname: '',
             author: '',
             summary: '',
-            load: false
+            load: false,
+            link: ''
         }
-        this.captureFile = this.captureFile.bind(this);
         this.onsubmit = this.onsubmit.bind(this);
-        this.generate = this.generate.bind(this);
         this.bookSubmit = this.bookSubmit.bind(this);
     }
     
@@ -34,7 +33,7 @@ class NewBlog extends Component{
         try {
             const accounts = await web3.eth.getAccounts();
             console.log(accounts[0]);
-            await blog.methods.Upload(this.state.name,this.state.ipfsHash).send({
+            await blog.methods.Upload(this.state.name,this.state.link).send({
                 from: accounts[0],
                 gas: '1000000'
             });
@@ -42,34 +41,6 @@ class NewBlog extends Component{
             
         }
         this.setState({loading: false});
-    }
-
-
-    generate(event) {
-        event.preventDefault();
-        ipfs.files.add(this.state.buffer, (err, res) => {
-            if(err){
-                console.log(err)
-                return
-            }
-            this.setState({ipfsHash: res[0].hash})
-            console.log('ipfsHash: ', this.state.ipfsHash);
-        })
-        this.setState({active: false});
-    }
-
-    captureFile(event) {
-        event.preventDefault();
-        console.log('Capture File...')
-
-        const file = event.target.files[0];
-        const reader = new window.FileReader();
-        reader.readAsArrayBuffer(file);
-
-        reader.onloadend = () => {
-            this.setState({buffer: Buffer(reader.result)})
-            console.log('buffer ',this.state.buffer);
-        }
     }
 
     bookSubmit = async(event) => {
@@ -90,7 +61,6 @@ class NewBlog extends Component{
 
     }
 
-
     render(){
         return(
             <Layout>
@@ -107,10 +77,10 @@ class NewBlog extends Component{
                          onChange = {event => this.setState({name: event.target.value})}
                         />
 
-                        <label>Upload File</label>
+                        <label>Link</label>
                         <Input 
-                            type='file'
-                            onChange = {this.captureFile}
+                            value = {this.state.link}
+                            onChange = {event => this.setState({link: event.target.value})}
                         />
                     </Form.Field>
                     <Button secondary loading={this.state.loading}>Submit</Button> 

@@ -11,7 +11,7 @@ class RequestBlog extends Component{
         const {List, Item} = Message;
         return(
             <List>
-                    <Item ><a href={`https://ipfs.io/ipfs/${this.props.request.pdf}`}><p style={{fontSize: 20, fontWeight: "bold"}}>{this.props.request.name}</p></a></Item>
+                    <Item ><a href={this.props.request.pdf}><p style={{fontSize: 20, fontWeight: "bold"}}>{this.props.request.name}</p></a></Item>
             </List>
 
         )

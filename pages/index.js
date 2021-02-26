@@ -66,21 +66,23 @@ class Blog extends Component{
                             <div>
                             <Segment circular style={square} inverted color="olive" >
                             <Link route={'/newblog'}>
-                                <a><Icon size="huge" name="cloud upload"/></a>
+                                <a><Icon size="huge" name="cloud upload"/><p>Upload</p></a>
+                                
                             </Link>
                             </Segment>
-                            <Segment circular inverted style={square} inverted color="grey">
+                            <Segment circular inverted style={square} inverted color="olive">
                             <Link route={'/books'}>
-                                <a><Icon name="book" size="huge"/></a>
+                                <a><Icon name="book" size="huge"/><p >My Library</p></a>
                             </Link>
                             </Segment>
                             </div>
                             <div>
-                            <Segment circular inverted style={square} inverted color="grey">
+                            <Segment circular inverted style={square} inverted color="olive">
                             <a>Coming Soon!</a>
                             </Segment>
                             <Segment circular style={square} inverted color="olive" >
-                            <a>Coming Soon!</a>
+                            <a><Icon name="product hunt" size="huge"/><p>My Projects</p></a>
+                            
                             </Segment>
 
                             <br></br>
