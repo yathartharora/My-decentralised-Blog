@@ -5,6 +5,7 @@ import {Form, Button, Input, Header, Icon, Image, Grid} from 'semantic-ui-react'
 import ipfs from '../ipfs';
 import web3 from '../Ethereum/web3';
 import HeadText from '../Components/Heading';
+import book from '../Ethereum/books';
 
 class NewBlog extends Component{
 
@@ -24,6 +25,8 @@ class NewBlog extends Component{
         }
         this.onsubmit = this.onsubmit.bind(this);
         this.bookSubmit = this.bookSubmit.bind(this);
+        this.captureFile = this.captureFile.bind(this);
+        this.generate = this.generate.bind(this);
     }
     
 
@@ -49,17 +52,43 @@ class NewBlog extends Component{
         try {
             const accounts = await web3.eth.getAccounts();
             console.log(accounts[0]);
-            await blog.methods.BookUpload(this.state.bookname, this.state.author, this.state.summary).send({
+            await book.methods.BookUpload(this.state.bookname, this.state.ipfsHash, this.state.summary).send({
                 from: accounts[0],
                 gas: '1000000'
             })
         } catch (error) {
             
         }
-
         this.setState({load: false});
-
     }
+
+    generate(event) {
+        event.preventDefault();
+        ipfs.files.add(this.state.buffer, (err, res) => {
+            if(err){
+                console.log(err)
+                return
+            }
+            this.setState({ipfsHash: res[0].hash})
+            console.log('ipfsHash: ', this.state.ipfsHash);
+        })
+        this.setState({active: false});
+    }
+
+    captureFile(event) {
+        event.preventDefault();
+        console.log('Capture File...')
+
+        const file = event.target.files[0];
+        const reader = new window.FileReader();
+        reader.readAsArrayBuffer(file);
+
+        reader.onloadend = () => {
+            this.setState({buffer: Buffer(reader.result)})
+            console.log('buffer ',this.state.buffer);
+        }
+    }
+
 
     render(){
         return(
@@ -97,10 +126,10 @@ class NewBlog extends Component{
                          onChange= {event => this.setState({bookname: event.target.value})}
                         />
 
-                        <label>Author Name</label>
+                        <label>Upload Image</label>
                         <Input
-                        value = {this.state.author}
-                        onChange = {event => this.setState({author: event.target.value})}
+                        type='file'
+                        onChange = {this.captureFile}
                         />
                         </Form.Field>
                         <label>Summary</label>
@@ -109,6 +138,7 @@ class NewBlog extends Component{
                          onChange = {event => this.setState({summary: event.target.value})}
                         />
                         <Button loading={this.state.load}>Submit</Button>
+                        <Button primary onClick={this.generate}>Generate</Button> 
                     </Form> 
 
                 </Grid.Column>

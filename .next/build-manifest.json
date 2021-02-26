@@ -29,6 +29,11 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/books": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/books.js"
+    ],
     "/newBlog": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",

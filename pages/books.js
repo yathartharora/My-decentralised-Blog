@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import blog from '../Ethereum/blog';
+import blog from '../Ethereum/books'
 import HeadText from '../Components/Heading';
 import Layout from '../Components/Layout';
 import RequestBook from '../Components/DisplayBook';
@@ -33,6 +33,7 @@ class Books extends Component{
         return(
             <Layout>
                 <HeadText />
+                <p style={{fontSize: 20, fontWeight: "bold"}}>Book Count: {this.props.requestCount}</p>
                 <Card.Group itemsPerRow={3}>
                 {this.renderRow()}
                 </Card.Group>
