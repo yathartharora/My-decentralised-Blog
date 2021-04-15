@@ -113,7 +113,6 @@ class NewBlog extends Component{
                         />
                     </Form.Field>
                     <Button secondary loading={this.state.loading}>Submit</Button> 
-                    <Button primary onClick={this.generate}>Generate</Button> 
                 </Form>
                 </Grid.Column >
                 <Grid.Column width={4}>
