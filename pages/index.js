@@ -78,7 +78,9 @@ class Blog extends Component{
                             </div>
                             <div>
                             <Segment circular inverted style={square} inverted color="olive">
-                            <a>Coming Soon!</a>
+                            <Link>
+                                <a href="https://yathartharora.substack.com"><Icon name="news" size="huge"/><p >Newsletter</p></a>
+                            </Link>
                             </Segment>
                             <Segment circular style={square} inverted color="olive" >
                             <a><Icon name="product hunt" size="huge"/><p>My Projects</p></a>
