@@ -3,16 +3,16 @@ const solc = require('solc');
 const fs = require('fs-extra');
 
 
-const buildPath = path.resolve(__dirname,'building');
+const buildPath = path.resolve(__dirname,'newsbuild');
 fs.removeSync(buildPath);
 
-const pathA = path.resolve(__dirname,'Contract', 'Books.sol');
+const pathA = path.resolve(__dirname,'Contract', 'Newsletter.sol');
 const solA = fs.readFileSync(pathA, 'utf8');
 
 
 const input = {
   sources: {
-    'Books.sol': solA,
+    'Newsletter.sol': solA,
   }
 };
 

@@ -6,6 +6,8 @@ import {Link} from '../routes';
 import blog from '../Ethereum/blog';
 import Display from '../Components/Display';
 import RequestBlog from '../Components/Display';
+import newsletter from '../Ethereum/newsletter';
+import RequestLetter from '../Components/displaynewsletter';
 
 const List =[]
 
@@ -24,7 +26,17 @@ class Blog extends Component{
             }) 
         );
 
-        return {requests, requestCount};
+        const letters = await newsletter.methods.display().call();
+
+
+        const count = letters.length;
+        const request = await Promise.all(
+            Array(parseInt(count)).fill().map((element, index) => {
+                return newsletter.methods.edition(index).call()
+            })
+        );
+
+        return {requests, requestCount, request, count};
     }
 
     renderRow() {
@@ -34,6 +46,14 @@ class Blog extends Component{
             />
             );
         });
+    }
+
+    renderletters() {
+            return this.props.request.map((i, index) => {
+                return ( <RequestLetter 
+                    i = {i}
+                />)
+            })
     }
 
     render(){
@@ -53,7 +73,7 @@ class Blog extends Component{
                         <p style={{fontStyle:'italic'}}> ~ Yatharth Arora</p>
                     </Message>
     
-                    <Grid columns={2}>
+                    <Grid columns={2} padded centered stackable>
                         <Grid.Column width={6} floated="left">
                         <div style={{fontSize:30, fontWeight:'bold', fontSmooth:10, marginTop: 10}}>Threads/Articles:</div>
                         <p>(Hover over any link and start reading) </p>
@@ -100,6 +120,15 @@ class Blog extends Component{
                                 <a href={`https://www.linkedin.com/in/yathartharora/`}><Icon name="linkedin" size="huge" /></a>
                             </Message>
                             </Segment>
+                            </div>
+
+                            <br></br>
+                            <div style={{fontSize:30, fontWeight:'bold', fontSmooth:10, marginTop: 10}}>Check out my Newsletters:</div>
+                            <br></br>
+                            <div>
+                                <Segment color="blue">
+                                    {this.renderletters()}
+                                </Segment>
                             </div>
                         </Grid.Column>
                     </Grid>

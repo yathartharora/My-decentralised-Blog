@@ -6,6 +6,7 @@ import ipfs from '../ipfs';
 import web3 from '../Ethereum/web3';
 import HeadText from '../Components/Heading';
 import book from '../Ethereum/books';
+import newsletter from '../Ethereum/newsletter';
 
 class NewBlog extends Component{
 
@@ -21,12 +22,18 @@ class NewBlog extends Component{
             author: '',
             summary: '',
             load: false,
-            link: ''
+            link: '',
+            title: '',
+            letterlink: '',
+            edition: '',
+            letterloading: false,
+            visible: true
         }
         this.onsubmit = this.onsubmit.bind(this);
         this.bookSubmit = this.bookSubmit.bind(this);
         this.captureFile = this.captureFile.bind(this);
         this.generate = this.generate.bind(this);
+        this.newslettersubmit = this.newslettersubmit.bind(this);
     }
     
 
@@ -72,7 +79,7 @@ class NewBlog extends Component{
             this.setState({ipfsHash: res[0].hash})
             console.log('ipfsHash: ', this.state.ipfsHash);
         })
-        this.setState({active: false});
+        this.setState({active: false, visible: false});
     }
 
     captureFile(event) {
@@ -89,14 +96,30 @@ class NewBlog extends Component{
         }
     }
 
+    newslettersubmit = async(event) => {
+        event.preventDefault();
+        this.setState({letterloading: true})
+
+        try {
+            const accounts = await web3.eth.getAccounts();
+            await newsletter.methods.Newsletterupload(this.state.title,this.state.letterlink,this.state.edition).send({
+                from: accounts[0],
+                gas: '1000000'
+            })
+        } catch (error) {
+            
+        }
+        this.setState({letterloading: false})
+    }
+
 
     render(){
         return(
             <Layout>
 
                 <HeadText />
-                <Grid column={2}  padded="horizontally">
-                <Grid.Column width={6} floated="left">
+                <Grid column={3}  divided>
+                <Grid.Column width={5}>
                 <p style={{fontWeight: "bold", fontSize: 20}}>Upload Thread</p>
                 <Form onSubmit={this.onsubmit}>
                     <Form.Field>
@@ -114,8 +137,8 @@ class NewBlog extends Component{
                     </Form.Field>
                     <Button secondary loading={this.state.loading}>Submit</Button> 
                 </Form>
-                </Grid.Column >
-                <Grid.Column width={4}>
+                </Grid.Column>
+                <Grid.Column width={5}>
                     <p style={{fontWeight: "bold", fontSize: 20}}>Upload Book Details</p>
                     <Form onSubmit={this.bookSubmit}>
                         <Form.Field>
@@ -136,10 +159,34 @@ class NewBlog extends Component{
                          value={this.state.summary}
                          onChange = {event => this.setState({summary: event.target.value})}
                         />
-                        <Button loading={this.state.load}>Submit</Button>
-                        <Button primary onClick={this.generate}>Generate</Button> 
+                        <Button primary loading={this.state.load} disabled={this.state.visible}>Submit</Button>
+                        <Button secondary onClick={this.generate}>Generate</Button> 
                     </Form> 
 
+                </Grid.Column>
+                    
+                <Grid.Column width={4}>
+                    <p style={{fontWeight: "bold", fontSize: 20}}>Upload Newsletter</p>
+                    <Form onSubmit={this.newslettersubmit}>
+                        <Form.Field>
+                            <label>Title</label>
+                            <Input 
+                             value = {this.state.title}
+                             onChange = {event => this.setState({title: event.target.value})}
+                              />
+                            <label>Link</label>
+                            <Input 
+                             value = {this.state.letterlink}
+                             onChange = {event => this.setState({letterlink: event.target.value})}
+                            />
+                            <label>Edition</label>
+                            <Input 
+                             value = {this.state.edition}
+                             onChange = {event => this.setState({edition: event.target.value})}
+                            />
+                        </Form.Field>
+                        <Button secondary loading={this.state.letterloading}>Submit</Button>
+                    </Form>
                 </Grid.Column>
                 </Grid>
 
